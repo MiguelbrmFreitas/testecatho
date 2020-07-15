@@ -13,6 +13,7 @@ Tela de home de um usuário com foto de perfil, sugestões de vagas e dicas dos 
 - [ ] Votar se uma dica é útil ou não.
 
 ## Diagrama de Casos de Uso
+![Diagrama de Casos de Uso](/img/DiagramaTesteCatho.png)
 
 ## Como rodar
 
