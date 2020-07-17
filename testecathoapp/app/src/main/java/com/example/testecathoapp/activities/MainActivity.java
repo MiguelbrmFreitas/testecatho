@@ -8,6 +8,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.Html;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -37,8 +40,10 @@ public class MainActivity extends AppCompatActivity implements Callback, ApiServ
 
     private Handler mHandler;
 
-    TextView mGreetingsTextView;
-    CircleImageView mProfilePicture;
+    private TextView mGreetingsTextView;
+    private CircleImageView mProfilePicture;
+    private ProgressBar mSpinner;
+    LinearLayout mWrapper;
 
     private User mUser;
 
@@ -47,8 +52,11 @@ public class MainActivity extends AppCompatActivity implements Callback, ApiServ
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Binding dos widgets/componentes
+        mSpinner = findViewById(R.id.activity_main_progress_bar);
         mGreetingsTextView = findViewById(R.id.activity_main_greetings_tv);
         mProfilePicture =  findViewById(R.id.activity_main_profile_picture);
+        mWrapper = findViewById(R.id.activity_main_linear_layout_wrapper);
 
         mHandler = new Handler(Looper.getMainLooper());
 
@@ -80,6 +88,8 @@ public class MainActivity extends AppCompatActivity implements Callback, ApiServ
                         mGreetingsTextView.setText(Html.fromHtml(getString(R.string.greetings_user, mUser.getName())));
                         Drawable photo = mApiServices.getPhotoDrawable(mUser.getPhotoRef(), getApplicationContext());
                         mProfilePicture.setImageDrawable(photo);
+                        mSpinner.setVisibility(View.GONE);
+                        mWrapper.setVisibility(View.VISIBLE);
                     }
                 });
             } catch (JSONException e) {

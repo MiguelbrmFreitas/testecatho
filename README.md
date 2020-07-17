@@ -6,6 +6,7 @@ Tela de home de um usuário com foto de perfil, sugestões de vagas e dicas dos 
 
 ## Features a serem implementadas
 - [X] Visualizar a foto cadastrada. 
+- [X] Animação de loading. 
 - [ ] Arrastar para os lados entre as sugestões de vagas.
 - [ ] Aplicar-se a uma vaga.
 - [ ] Visualizar informações detalhadas de uma vaga.
@@ -14,6 +15,8 @@ Tela de home de um usuário com foto de perfil, sugestões de vagas e dicas dos 
 
 ## Diagrama de Casos de Uso
 ![Diagrama de Casos de Uso](/img/DiagramaTesteCatho.png)
+
+## Observação
 
 ## Como rodar
 
