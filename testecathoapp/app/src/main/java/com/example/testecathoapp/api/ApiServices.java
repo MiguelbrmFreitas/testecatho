@@ -90,10 +90,9 @@ public class ApiServices
 
     /**
      * Método para receber um usuário da API
-     * @param callback  Callback para a resposta
      * @param id        Id do usuário
      */
-    public void getUser (Callback callback, String id) {
+    public void getUser (String id) {
         String url = mBaseUrl + "/auth/" + id;
 
         OkHttpClient client = new OkHttpClient();
@@ -105,7 +104,17 @@ public class ApiServices
                     .build();
 
             // Chama o callback com a resposta
-            client.newCall(request).enqueue(callback);
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                    e.printStackTrace();
+                }
+
+                @Override
+                public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                    mRequestCompleted.onUserRequestCompleted(call, response);
+                }
+            });
         } else {
             Log.i(TAG, "Chave de autenticação nula");
         }
@@ -163,6 +172,7 @@ public class ApiServices
      */
     public interface RequestCompleted {
         void onKeysRequestCompleted();
+        void onUserRequestCompleted(Call call, Response response);
         void onSuggestionsRequestCompleted(Call call, Response response);
     }
 }

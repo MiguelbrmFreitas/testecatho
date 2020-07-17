@@ -39,7 +39,7 @@ import java.util.TimerTask;
 /*
 *   Activity principal
 */
-public class MainActivity extends AppCompatActivity implements Callback, ApiServices.RequestCompleted {
+public class MainActivity extends AppCompatActivity implements ApiServices.RequestCompleted {
 
     private static String TAG = "MainActivity";
 
@@ -109,17 +109,17 @@ public class MainActivity extends AppCompatActivity implements Callback, ApiServ
     }
 
     @Override
-    public void onFailure(@NotNull Call call, @NotNull IOException e) {
-        Log.i(TAG, "Failed on request");
-        e.printStackTrace();
+    public void onKeysRequestCompleted() {
+        // Chamar o método de getUser só quando a primeira request acabar
+        mApiServices.getUser(USER_ID);
     }
 
     @Override
-    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-        String responseBody = response.body().string();
-        Log.i(TAG, responseBody);
-        if (response.isSuccessful()) {
-            try {
+    public void onUserRequestCompleted(Call call, Response response) {
+        try {
+            String responseBody = response.body().string();
+            Log.i(TAG, responseBody);
+            if (response.isSuccessful()) {
                 JSONObject jsonObject = new JSONObject(responseBody);
                 Log.i(TAG, "Json Object is " + jsonObject.toString());
                 String id = jsonObject.getString("id");
@@ -136,19 +136,13 @@ public class MainActivity extends AppCompatActivity implements Callback, ApiServ
                         mApiServices.getJobSuggestions(mUser.getToken());
                     }
                 });
-            } catch (JSONException e) {
-                e.printStackTrace();
+            } else {
+                Log.i(TAG, response.message());
+                Log.i(TAG, "Error! Response isn't successful");
             }
-        } else {
-            Log.i(TAG, response.message());
-            Log.i(TAG, "Error! Response isn't successful");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    }
-
-    @Override
-    public void onKeysRequestCompleted() {
-        // Chamar o método de getUser só quando a primeira request acabar
-        mApiServices.getUser(this, USER_ID);
     }
 
     @Override
