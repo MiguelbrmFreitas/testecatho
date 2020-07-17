@@ -78,6 +78,7 @@
                android:layout_width="match_parent"
                android:layout_height="200dp"
                android:layout_below="@id/activity_main_suggestions_title_tv"
+               android:layout_margin="16dp"
                />
 
            <LinearLayout

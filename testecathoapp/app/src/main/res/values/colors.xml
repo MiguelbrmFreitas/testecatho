@@ -6,4 +6,6 @@
     <color name="card_background_color">#FFFFFF</color>
     <color name="borderColor">#FFFFFF</color>
     <color name="textColor">#FFFFFF</color>
+    <color name="activeDotColor">#FFFFFF</color>
+    <color name="defaultDotColor">#004990</color>
 </resources>
