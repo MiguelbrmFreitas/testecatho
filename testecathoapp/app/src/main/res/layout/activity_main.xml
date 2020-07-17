@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.MainActivity"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/activity_main_greetings_rl"
+        android:layout_weight="0"
+        >
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/activity_main_profile_image"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@drawable/ic_launcher_background"
+            app:civ_border_width="4dp"
+            app:civ_border_color="@color/borderColor"
+            android:padding="16dp"
+            />
+
+        <TextView
+            android:id="@+id/activity_main_greetings_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/greetings_user"
+            android:padding="32dp"
+            android:textSize="24sp"
+            android:textColor="@color/textColor"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/activity_main_suggestions_rl"
+        android:layout_weight="4"
+        >
+
+        <TextView
+            android:id="@+id/activity_main_suggestions_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/suggestions_title"
+            android:padding="16dp"
+            android:textSize="22sp"
+            android:textColor="@color/textColor"
+            />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/activity_main_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@id/activity_main_suggestions_title_tv"
+            />
+
+        <LinearLayout
+            android:id="@+id/activity_maiin_layout_dots"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_below="@id/activity_main_view_pager"
+            >
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/activity_main_tips_rl"
+        android:layout_weight="4"
+        >
+
+        <TextView
+            android:id="@+id/activity_main_tips_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tips_title"
+            android:padding="16dp"
+            android:textSize="22sp"
+            android:textColor="@color/textColor"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/activity_main_tip_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@id/activity_main_tips_title_tv"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="16dp"
+            >
+
+            <FrameLayout
+                android:id="@+id/activity_main_tip_fl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+</LinearLayout>
