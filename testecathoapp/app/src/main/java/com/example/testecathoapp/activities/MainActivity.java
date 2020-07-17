@@ -133,8 +133,7 @@ public class MainActivity extends AppCompatActivity implements Callback, ApiServ
                         mGreetingsTextView.setText(Html.fromHtml(getString(R.string.greetings_user, mUser.getName())));
                         Drawable photo = mApiServices.getPhotoDrawable(mUser.getPhotoRef(), getApplicationContext());
                         mProfilePicture.setImageDrawable(photo);
-                        mSpinner.setVisibility(View.GONE);
-                        mWrapper.setVisibility(View.VISIBLE);
+                        mApiServices.getJobSuggestions(mUser.getToken());
                     }
                 });
             } catch (JSONException e) {
@@ -147,9 +146,29 @@ public class MainActivity extends AppCompatActivity implements Callback, ApiServ
     }
 
     @Override
-    public void onRequestCompleted() {
+    public void onKeysRequestCompleted() {
         // Chamar o método de getUser só quando a primeira request acabar
         mApiServices.getUser(this, USER_ID);
+    }
+
+    @Override
+    public void onSuggestionsRequestCompleted(Call call, Response response) {
+        // Chamada do método de getSuggestions que depende das informações do request getUser
+        try {
+            String stringResponse = response.body().string();
+            Log.i(TAG, stringResponse);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                mSpinner.setVisibility(View.GONE);
+                mWrapper.setVisibility(View.VISIBLE);
+            }
+        });
+
     }
 
     /**

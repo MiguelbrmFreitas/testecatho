@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.example.testecathoapp.R;
 import com.example.testecathoapp.models.Keys;
+import com.example.testecathoapp.models.User;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
@@ -28,6 +29,7 @@ public class ApiServices
     private static String AUTH_KEY = "1811a58a2bdceefa000c5b4bb1def4e00c8151de2e3fc1180849ce12134d763ad0416a71fd2cd59241a30a225596ecf4020498ad4b9be3b5f9220e852b86defb";
     private String mBaseUrl = "https://teste-catho-api-v2.herokuapp.com";
     private Keys mKeys;
+    private User mUser;
     private RequestCompleted mRequestCompleted;
 
     public ApiServices (RequestCompleted requestCompleted) {
@@ -72,7 +74,7 @@ public class ApiServices
                         Log.i(TAG, "Suggestion key is " + mKeys.getSuggestion());
                         Log.i(TAG, "Survey key is " + mKeys.getSurvey());
 
-                        mRequestCompleted.onRequestCompleted();
+                        mRequestCompleted.onKeysRequestCompleted();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -109,6 +111,41 @@ public class ApiServices
         }
     }
 
+    public void getJobSuggestions(String userToken) {
+        String url = mBaseUrl + "/suggestion";
+
+        OkHttpClient client = new OkHttpClient();
+
+        if (mKeys.getSuggestion() != null) {
+            Request request = new Request.Builder()
+                    .url(url)
+                    .addHeader("x-api-key", mKeys.getSuggestion())
+                    .addHeader("Authorization", userToken)
+                    .build();
+
+            // Chama o callback com a resposta
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                    e.printStackTrace();
+                }
+
+                @Override
+                public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                    mRequestCompleted.onSuggestionsRequestCompleted(call, response);
+                }
+            });
+        } else {
+            Log.i(TAG, "Chave de autenticação nula");
+        }
+    }
+
+    /**
+     * Método para mapear e retornar a foto correta do usuário
+     * @param photoRef  Referência da foto (nome do arquivo)
+     * @param context   Context da aplicação
+     * @return          Drawable da foto de perfil
+     */
     public Drawable getPhotoDrawable(String photoRef, Context context) {
         Drawable photoDrawable;
         Log.i(TAG, photoRef);
@@ -125,6 +162,7 @@ public class ApiServices
      * Interface para definir o comportamento e setar um callback de quando uma request é completada
      */
     public interface RequestCompleted {
-        public void onRequestCompleted();
+        void onKeysRequestCompleted();
+        void onSuggestionsRequestCompleted(Call call, Response response);
     }
 }
