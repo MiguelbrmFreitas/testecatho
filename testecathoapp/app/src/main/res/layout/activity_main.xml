@@ -17,7 +17,7 @@
         >
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/activity_main_profile_image"
+            android:id="@+id/activity_main_profile_picture"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:src="@drawable/ic_launcher_background"
@@ -32,9 +32,9 @@
             android:layout_height="wrap_content"
             android:text="@string/greetings_user"
             android:padding="32dp"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textColor="@color/textColor"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             />
     </RelativeLayout>
 
@@ -63,7 +63,7 @@
             />
 
         <LinearLayout
-            android:id="@+id/activity_maiin_layout_dots"
+            android:id="@+id/activity_main_layout_dots"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"

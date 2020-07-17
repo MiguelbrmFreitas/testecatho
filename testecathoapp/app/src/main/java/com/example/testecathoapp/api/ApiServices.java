@@ -1,9 +1,11 @@
 package com.example.testecathoapp.api;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 
-import com.example.testecathoapp.models.User;
+import com.example.testecathoapp.R;
+import com.example.testecathoapp.models.Keys;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
@@ -25,12 +27,18 @@ public class ApiServices
     private static String TAG = "ApiServices";
     private static String AUTH_KEY = "1811a58a2bdceefa000c5b4bb1def4e00c8151de2e3fc1180849ce12134d763ad0416a71fd2cd59241a30a225596ecf4020498ad4b9be3b5f9220e852b86defb";
     private String mBaseUrl = "https://teste-catho-api-v2.herokuapp.com";
+    private Keys mKeys;
+    private RequestCompleted mRequestCompleted;
 
-    public ApiServices (Callback callback) {
-        getAuthKey(callback);
+    public ApiServices (RequestCompleted requestCompleted) {
+        getKeys();
+        mRequestCompleted = requestCompleted;
     }
 
-    private void getAuthKey(Callback callback) {
+    /**
+     * Método para receber as keys de autenticação da API
+     */
+    private void getKeys() {
         String url = mBaseUrl + "/keys";
 
         OkHttpClient client = new OkHttpClient();
@@ -39,26 +47,84 @@ public class ApiServices
                 .url(url)
                 .build();
 
-        client.newCall(request).enqueue(callback);
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                String responseBody = response.body().string();
+                Log.i(TAG, responseBody);
+                if (response.isSuccessful()) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(responseBody);
+                        String authKey = jsonObject.getString("auth");
+                        String tipsKey = jsonObject.getString("tips");
+                        String suggestionKey = jsonObject.getString("suggestion");
+                        String surveyKey = jsonObject.getString("survey");
+
+                        mKeys = new Keys(authKey, tipsKey, suggestionKey, surveyKey);
+
+                        Log.i(TAG, "Auth key is " + mKeys.getAuth());
+                        Log.i(TAG, "Tips key is " + mKeys.getTips());
+                        Log.i(TAG, "Suggestion key is " + mKeys.getSuggestion());
+                        Log.i(TAG, "Survey key is " + mKeys.getSurvey());
+
+                        mRequestCompleted.onRequestCompleted();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Log.i(TAG, response.message());
+                    Log.i(TAG, "Error");
+                }
+            }
+        });
+
+        //client.newCall(request).enqueue(callback);
     }
 
-    public User getUser (String id) {
+    /**
+     * Método para receber um usuário da API
+     * @param callback  Callback para a resposta
+     * @param id        Id do usuário
+     */
+    public void getUser (Callback callback, String id) {
         String url = mBaseUrl + "/auth/" + id;
 
         OkHttpClient client = new OkHttpClient();
 
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
+        if (mKeys.getAuth() != null) {
+            Request request = new Request.Builder()
+                    .url(url)
+                    .addHeader("x-api-key", mKeys.getAuth())
+                    .build();
 
-        try {
-            Response response = client.newCall(request).execute();
-            Log.i(TAG, response.message());
-            Log.i(TAG, response.body().string());
-        } catch (Exception e) {
-            Log.i(TAG, "Deu treta");
+            // Chama o callback com a resposta
+            client.newCall(request).enqueue(callback);
+        } else {
+            Log.i(TAG, "Chave de autenticação nula");
+        }
+    }
+
+    public Drawable getPhotoDrawable(String photoRef, Context context) {
+        Drawable photoDrawable;
+        Log.i(TAG, photoRef);
+        if (photoRef.equals("/assets/ee09bd39-4ca2-47ac-9c5e-9c57ba5a26dc.png")) {
+            photoDrawable = context.getDrawable(R.drawable.user1);
+        } else {
+            photoDrawable = context.getDrawable(R.drawable.user2);
         }
 
-        return new User("", "", "", "");
+        return photoDrawable;
+    }
+
+    /**
+     * Interface para definir o comportamento e setar um callback de quando uma request é completada
+     */
+    public interface RequestCompleted {
+        public void onRequestCompleted();
     }
 }
