@@ -1,7 +1,7 @@
 package com.example.testecathoapp.models;
 
 /*
- *  Definição da model de Keys
+ *  Definição da model das Keys
  */
 public class Keys
 {
