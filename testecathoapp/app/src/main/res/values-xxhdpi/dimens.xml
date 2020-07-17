@@ -3,4 +3,5 @@
     <dimen name="text_size">22sp</dimen>
     <dimen name="jobs_width">354dp</dimen>
     <dimen name="cards_height">200dp</dimen>
+    <dimen name="tips_height">215dp</dimen>
 </resources>

@@ -121,13 +121,22 @@
                android:textColor="@color/textColor"
                />
 
+           <View
+               android:layout_width="40dp"
+               android:layout_height="24dp"
+               android:background="@drawable/expand_more"
+               android:layout_alignParentEnd="true"
+               android:layout_above="@id/activity_main_tip_card_view"
+               android:layout_marginEnd="16dp"
+               />
+
            <androidx.cardview.widget.CardView
                android:id="@+id/activity_main_tip_card_view"
                android:layout_width="match_parent"
                android:layout_height="@dimen/cards_height"
-               android:layout_below="@id/activity_main_tips_title_tv"
                android:layout_margin="16dp"
                app:cardCornerRadius="16dp"
+               android:layout_below="@id/activity_main_tips_title_tv"
                >
 
                <FrameLayout

@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Binding dos widgets/componentes
+        // Binding dos elementos do layout
         mSpinner = findViewById(R.id.activity_main_progress_bar);
         mGreetingsTextView = findViewById(R.id.activity_main_greetings_tv);
         mProfilePicture =  findViewById(R.id.activity_main_profile_picture);
@@ -84,12 +84,6 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
         mViewPager.setAdapter(jobsViewPagerAdapter);
 
         // Configura o ViewPager
-//        int viewPagerWidth = (int) (mContainer.getWidth() * 0.8); // Faz o ViewPager sempre ser 80% do PageContainer
-//
-//        ViewPager.LayoutParams params = new ViewPager.LayoutParams();
-//        params.width = viewPagerWidth;
-//        params.height = mViewPager.getHeight();
-//        mViewPager.setLayoutParams(params);
         mViewPager.setPageMargin(convertDpToPixels(this,16));
         mViewPager.setClipChildren(false);
 
@@ -118,8 +112,10 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new CustomTimerTask(), 10000, 5000);
 
+        // Inicializa o Handler para as threads
         mHandler = new Handler(Looper.getMainLooper());
 
+        // Inicializa o objeto para chamadas de API
         mApiServices = new ApiServices(this);
     }
 
@@ -141,7 +137,9 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
                 String name = jsonObject.getString("name");
                 String token = jsonObject.getString("token");
                 String photo = jsonObject.getString("photo");
+                // Cria usuário a partir do parsing do Json Object
                 mUser = new User(id, name, token, photo);
+                // Atualiza a UI na thread principal
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -206,6 +204,12 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
         mDots[currentPage].setAlpha(1f);
     }
 
+    /**
+     * Método para converter pixels relativos para absolutos
+     * @param context   Referência ao contexto do app
+     * @param dip       Pixels em DPI a serem convertidos
+     * @return          Resultado de pixels em PX
+     */
     private static int convertDpToPixels(Context context, int dip) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, context.getResources().getDisplayMetrics());
     }
@@ -217,7 +221,6 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
 
         @Override
         public void run() {
-
             MainActivity.this.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
