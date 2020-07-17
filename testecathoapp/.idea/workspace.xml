@@ -121,13 +121,7 @@
       <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testecathoapp/models/User.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/card_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/cc3431c3-d9c9-48e2-8a1f-c3c0260f0712.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/done_all.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ee09bd39-4ca2-47ac-9c5e-9c57ba5a26dc.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/expand_more.svg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/thumb_up Copy.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/thumb_up.svg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_job_suggestion_details.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_job_suggestion.xml" afterDir="false" />
