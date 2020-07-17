@@ -34,7 +34,6 @@
            android:layout_weight="0"
            >
            <de.hdodenhof.circleimageview.CircleImageView
-               xmlns:app="http://schemas.android.com/apk/res-auto"
                android:id="@+id/activity_main_profile_picture"
                android:layout_width="96dp"
                android:layout_height="96dp"
@@ -50,7 +49,7 @@
                android:layout_height="wrap_content"
                android:text="@string/greetings_user"
                android:padding="32dp"
-               android:textSize="22sp"
+               android:textSize="@dimen/text_size"
                android:textColor="@color/textColor"
                android:layout_centerHorizontal="true"
                />
@@ -68,18 +67,28 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="@string/suggestions_title"
-               android:padding="16dp"
-               android:textSize="22sp"
+               android:paddingTop="16dp"
+               android:paddingStart="16dp"
+               android:paddingEnd="16dp"
+               android:textSize="@dimen/text_size"
                android:textColor="@color/textColor"
                />
-
-           <androidx.viewpager.widget.ViewPager
-               android:id="@+id/activity_main_view_pager"
+           
+           <com.example.testecathoapp.containers.PagerContainer
+               android:id="@+id/activity_main_pager_container"
                android:layout_width="match_parent"
-               android:layout_height="200dp"
+               android:layout_height="wrap_content"
                android:layout_below="@id/activity_main_suggestions_title_tv"
-               android:layout_margin="16dp"
-               />
+               >
+
+               <androidx.viewpager.widget.ViewPager
+                   android:id="@+id/activity_main_view_pager"
+                   android:layout_width="@dimen/jobs_width"
+                   android:layout_height="@dimen/cards_height"
+                   android:layout_below="@id/activity_main_suggestions_title_tv"
+                   android:layout_margin="16dp"
+                   />
+           </com.example.testecathoapp.containers.PagerContainer>
 
            <LinearLayout
                android:id="@+id/activity_main_layout_dots"
@@ -87,7 +96,7 @@
                android:layout_height="wrap_content"
                android:gravity="center_horizontal"
                android:orientation="horizontal"
-               android:layout_below="@id/activity_main_view_pager"
+               android:layout_below="@id/activity_main_pager_container"
                >
            </LinearLayout>
 
@@ -105,15 +114,17 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="@string/tips_title"
-               android:padding="16dp"
-               android:textSize="22sp"
+               android:paddingTop="16dp"
+               android:paddingStart="16dp"
+               android:paddingEnd="16dp"
+               android:textSize="@dimen/text_size"
                android:textColor="@color/textColor"
                />
 
            <androidx.cardview.widget.CardView
                android:id="@+id/activity_main_tip_card_view"
                android:layout_width="match_parent"
-               android:layout_height="200dp"
+               android:layout_height="@dimen/cards_height"
                android:layout_below="@id/activity_main_tips_title_tv"
                android:layout_margin="16dp"
                app:cardCornerRadius="16dp"

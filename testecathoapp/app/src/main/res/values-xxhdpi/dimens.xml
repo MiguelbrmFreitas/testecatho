@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size">22sp</dimen>
+    <dimen name="jobs_width">354dp</dimen>
+    <dimen name="cards_height">200dp</dimen>
+</resources>

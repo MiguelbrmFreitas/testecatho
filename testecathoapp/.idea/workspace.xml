@@ -16,24 +16,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e69749c9-f158-46ba-881c-d9db7873fe58" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testecathoapp/containers/PagerContainer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/values-hdpi/dimens.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/values-mdpi/dimens.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/values-xhdpi/dimens.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/values-xxhdpi/dimens.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/values-xxxhdpi/dimens.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testecathoapp/activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testecathoapp/activities/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testecathoapp/api/ApiServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testecathoapp/api/ApiServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="5ca1cf1a" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Galaxy_Nexus_API_23" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -50,9 +60,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="valueResourceFile" />
-        <option value="Class" />
         <option value="layoutResourceFile" />
         <option value="resourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -67,6 +77,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Galaxy_Nexus_API_23" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-07-17T13:38:38.826Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -230,22 +242,26 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1102" y="599" key="Github.CreateGistDialog/0.0.2560.1400/-1920.243.1920.1040@0.0.2560.1400" timestamp="1594934297169" />
-    <state width="1250" height="390" key="GridCell.Tab.0.bottom" timestamp="1594985999504">
+    <state width="1250" height="390" key="GridCell.Tab.0.bottom" timestamp="1594993171171">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1250" height="390" key="GridCell.Tab.0.bottom/0.0.2560.1400/-1920.243.1920.1040@0.0.2560.1400" timestamp="1594985999504" />
-    <state width="1250" height="390" key="GridCell.Tab.0.center" timestamp="1594985999504">
+    <state width="1250" height="390" key="GridCell.Tab.0.bottom/0.0.2560.1400/-1920.243.1920.1040@0.0.2560.1400" timestamp="1594993171171" />
+    <state width="1250" height="390" key="GridCell.Tab.0.center" timestamp="1594993171171">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1250" height="390" key="GridCell.Tab.0.center/0.0.2560.1400/-1920.243.1920.1040@0.0.2560.1400" timestamp="1594985999504" />
-    <state width="1250" height="390" key="GridCell.Tab.0.left" timestamp="1594985999504">
+    <state width="1250" height="390" key="GridCell.Tab.0.center/0.0.2560.1400/-1920.243.1920.1040@0.0.2560.1400" timestamp="1594993171171" />
+    <state width="1250" height="390" key="GridCell.Tab.0.left" timestamp="1594993171171">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1250" height="390" key="GridCell.Tab.0.left/0.0.2560.1400/-1920.243.1920.1040@0.0.2560.1400" timestamp="1594985999504" />
-    <state width="1250" height="390" key="GridCell.Tab.0.right" timestamp="1594985999504">
+    <state width="1250" height="390" key="GridCell.Tab.0.left/0.0.2560.1400/-1920.243.1920.1040@0.0.2560.1400" timestamp="1594993171171" />
+    <state width="1250" height="390" key="GridCell.Tab.0.right" timestamp="1594993171171">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1250" height="390" key="GridCell.Tab.0.right/0.0.2560.1400/-1920.243.1920.1040@0.0.2560.1400" timestamp="1594985999504" />
+    <state width="1250" height="390" key="GridCell.Tab.0.right/0.0.2560.1400/-1920.243.1920.1040@0.0.2560.1400" timestamp="1594993171171" />
+    <state x="781" y="342" key="SettingsEditor" timestamp="1594990450643">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="781" y="342" key="SettingsEditor/0.0.2560.1400/-1920.243.1920.1040@0.0.2560.1400" timestamp="1594990450643" />
     <state x="976" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1594863231735">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

@@ -11,6 +11,7 @@ import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -26,6 +27,7 @@ import okhttp3.Response;
 import com.example.testecathoapp.R;
 import com.example.testecathoapp.adapters.JobsViewPagerAdapter;
 import com.example.testecathoapp.api.ApiServices;
+import com.example.testecathoapp.containers.PagerContainer;
 import com.example.testecathoapp.models.User;
 
 import org.jetbrains.annotations.NotNull;
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
     private ProgressBar mSpinner;
     private LinearLayout mWrapper;
     private ViewPager mViewPager;
+    PagerContainer mContainer;
 
     private User mUser;
 
@@ -70,13 +73,25 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
         mGreetingsTextView = findViewById(R.id.activity_main_greetings_tv);
         mProfilePicture =  findViewById(R.id.activity_main_profile_picture);
         mWrapper = findViewById(R.id.activity_main_linear_layout_wrapper);
-        mViewPager = findViewById(R.id.activity_main_view_pager);
         mDotsLayout = findViewById(R.id.activity_main_layout_dots);
+
+        // Inicializa o PageContainer e o ViewPager
+        mContainer = findViewById(R.id.activity_main_pager_container);
+        mViewPager = mContainer.getViewPager();
 
         // Inicializa o Adapter do View Pager
         JobsViewPagerAdapter jobsViewPagerAdapter = new JobsViewPagerAdapter(this);
         mViewPager.setAdapter(jobsViewPagerAdapter);
+
+        // Configura o ViewPager
+//        int viewPagerWidth = (int) (mContainer.getWidth() * 0.8); // Faz o ViewPager sempre ser 80% do PageContainer
+//
+//        ViewPager.LayoutParams params = new ViewPager.LayoutParams();
+//        params.width = viewPagerWidth;
+//        params.height = mViewPager.getHeight();
+//        mViewPager.setLayoutParams(params);
         mViewPager.setPageMargin(convertDpToPixels(this,16));
+        mViewPager.setClipChildren(false);
 
         // Configura os dots
         mDotsCount = jobsViewPagerAdapter.getCount();
@@ -101,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
 
         // Muda a vaga automaticamente a cada 5 segundos
         Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new CustomTimerTask(), 5000, 5000);
+        timer.scheduleAtFixedRate(new CustomTimerTask(), 10000, 5000);
 
         mHandler = new Handler(Looper.getMainLooper());
 
