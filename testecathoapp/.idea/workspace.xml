@@ -22,22 +22,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e69749c9-f158-46ba-881c-d9db7873fe58" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_selection_1_1_0_rc01_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testecathoapp/adapters/LocationsAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_location.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testecathoapp/activities/JobSuggestionDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testecathoapp/activities/JobSuggestionDetailsActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_job_suggestion_details.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_job_suggestion_details.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-hdpi/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-hdpi/dimens.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-mdpi/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-mdpi/dimens.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-xhdpi/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-xhdpi/dimens.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-xxhdpi/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-xxhdpi/dimens.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-xxxhdpi/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-xxxhdpi/dimens.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_XL_API_23" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="5ca1cf1a" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -54,9 +57,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="valueResourceFile" />
-        <option value="layoutResourceFile" />
-        <option value="Class" />
         <option value="resourceFile" />
+        <option value="Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -216,18 +219,18 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="1085" y="384" key="#com.intellij.ide.util.MemberChooser" timestamp="1595082025803">
+    <state x="1085" y="384" key="#com.intellij.ide.util.MemberChooser" timestamp="1595093434567">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1085" y="384" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400/-1920.243.1920.1040@0.0.2560.1400" timestamp="1595082025803" />
+    <state x="1085" y="384" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400/-1920.243.1920.1040@0.0.2560.1400" timestamp="1595093434567" />
     <state x="860" y="455" key="AndroidCreateResourceDirectoryDialog" timestamp="1594863298005">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="860" y="455" key="AndroidCreateResourceDirectoryDialog/0.0.2560.1400/-1920.243.1920.1040@0.0.2560.1400" timestamp="1594863298005" />
-    <state x="860" y="455" key="AndroidCreateResourceFileDialog" timestamp="1595034040034">
+    <state x="860" y="455" key="AndroidCreateResourceFileDialog" timestamp="1595094449855">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="860" y="455" key="AndroidCreateResourceFileDialog/0.0.2560.1400/-1920.243.1920.1040@0.0.2560.1400" timestamp="1595034040034" />
+    <state x="860" y="455" key="AndroidCreateResourceFileDialog/0.0.2560.1400/-1920.243.1920.1040@0.0.2560.1400" timestamp="1595094449855" />
     <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1594968044781">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

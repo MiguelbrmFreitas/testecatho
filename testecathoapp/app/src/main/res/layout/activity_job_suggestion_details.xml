@@ -98,7 +98,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/activity_job_suggestion_jobs_positions_text"
-                    android:layout_margin="16dp"
+                    android:layout_marginTop="16dp"
                     android:text="3"
                     android:textSize="@dimen/info_text_size"
                     />
@@ -145,12 +145,14 @@
                     android:textStyle="bold"
                     />
 
-                <view class="androidx.appcompat.app.AlertController$RecycleListView"
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/activity_job_suggestion_locations_list"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="16dp"
+                    />
 
-                </view>
         </LinearLayout>
 
 </LinearLayout>
