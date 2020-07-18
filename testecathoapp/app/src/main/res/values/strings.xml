@@ -10,4 +10,5 @@
     <string name="date_title">Data: </string>
     <string name="positions_title">Vagas: </string>
     <string name="locations_title">Localidade: </string>
+    <string name="no_more_tips">Não há mais dicas disponíveis no momento. Continue acompanhando!</string>
 </resources>

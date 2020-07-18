@@ -16,7 +16,7 @@ Algumas das funcionalidades apresentadas são extras em relação ao que foi ped
 - [X] Visualizar informações detalhadas de uma vaga (extra).
 - [X] Visualizar dica de recrutadores.
 - [X] Votar se uma dica é útil ou não.
-- [ ] Ir para a próxima dica (extra).
+- [X] Ir para a próxima dica (extra).
 
 ## Diagrama de Casos de Uso
 ![Diagrama de Casos de Uso](/img/DiagramaTesteCatho.png)

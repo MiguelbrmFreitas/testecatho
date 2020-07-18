@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
     private ImageView[] mDots;
     private int mDotsCount;
     private LinearLayout mDotsLayout;
+    FrameLayout mFrameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
         mProfilePicture =  findViewById(R.id.activity_main_profile_picture);
         mWrapper = findViewById(R.id.activity_main_linear_layout_wrapper);
         mDotsLayout = findViewById(R.id.activity_main_layout_dots);
+        mFrameLayout = findViewById(R.id.activity_main_tip_fl);
 
         // Inicializa o PageContainer e o ViewPager
         mContainer = findViewById(R.id.activity_main_pager_container);
@@ -163,8 +165,7 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
         }
 
         // Prepara o carregamento do fragment
-        Log.i(TAG, mTips[mTipsIndex].getDescription());
-        final TipsFragment tipsFragment = TipsFragment.newInstance(mTips[mTipsIndex], mTips.length);
+        final TipsFragment tipsFragment = TipsFragment.newInstance(mTips[mTipsIndex], mTips.length, false);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(tipsFragment, "tipsFragment").commit();
 
@@ -172,8 +173,8 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
             @Override
             public void run() {
                 // Cria o fragment com dicas
-                FrameLayout layout = findViewById(R.id.activity_main_tip_fl);
-                layout.addView(tipsFragment.getView());
+                mFrameLayout = findViewById(R.id.activity_main_tip_fl);
+                mFrameLayout.addView(tipsFragment.getView());
 
                 // Tira o spinner do loading e mostra o conteúdo carregado na tela
                 mSpinner.setVisibility(View.GONE);
@@ -317,20 +318,32 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
     }
 
     /**
-     * Método para ir para a próxima dica
+     * Método para ir para a próxima dica disponível
      */
     public void goToNextTip() {
-        if (mTipsIndex < mTips.length) {
+        boolean noMoreTips;
+        if (mTipsIndex < (mTips.length -1)) {
             mTipsIndex++; // Incrementa o índice da dica
-            mHandler.post(new Runnable() {
-                @Override
-                public void run() {
-
-                }
-            });
+            noMoreTips = false;
         } else {
-            mTipsIndex = 0;
+            noMoreTips = true;
         }
+
+        // Prepara a transição de fragment com a próxima dica
+        final TipsFragment tipsFragment = !noMoreTips?
+                TipsFragment.newInstance(mTips[mTipsIndex], mTips.length, noMoreTips) :
+                // Se não houver mais dicas, cria com um objeto vazio
+                TipsFragment.newInstance(new Tip("", "", false, "", ""), 0, noMoreTips);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(tipsFragment, "tipsFragment").commit();
+
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                mFrameLayout.removeAllViews();
+                mFrameLayout.addView(tipsFragment.getView()); // Instancia fragment com nova dica
+            }
+        });
     }
 
     public void postSurvey(String action, String tipId) {

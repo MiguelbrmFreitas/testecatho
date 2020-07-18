@@ -11,69 +11,89 @@
     <!-- Textos hardcoded apenas para mockup e teste -->
     <!-- Textos vão ser substituídos pela API após o loading -->
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/fragment_tip_no_more_tips_text"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/fragment_tip_description_text"
-        android:layout_margin="16dp"
-        android:text="Antes de enviar o seu currículo, que tal checar a última vez que você o atualizou? Uma informação a mais pode ser o ponta-pé que falta rumo à sua próxima entrevista de emprego."
-        android:textSize="@dimen/tip_text_size"
-        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:textSize="@dimen/info_text_size"
+        android:text="@string/no_more_tips"
+        android:padding="16dp"
+        android:visibility="gone"
         />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/fragment_tip_description_text"
+        android:layout_height="@dimen/cards_height"
+        android:id="@+id/fragment_tip_wrapper"
+        android:visibility="visible"
         >
 
-        <Button
-            android:id="@+id/fragment_tip_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CHECAR CURRÍCULO"
-            android:textColor="@color/colorPrimary"
-            android:padding="8dp"
-            android:background="@drawable/button_outline_background"
-            android:layout_alignParentBottom="true"
-            android:layout_centerVertical="true"
-            android:layout_margin="16dp"
-            />
-
         <TextView
-            android:id="@+id/fragment_tip_useful_text"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="32dp"
-            android:layout_toEndOf="@id/fragment_tip_button"
-            android:text="Achou útil?"
-            android:textSize="@dimen/useful_tip_text_size"
-            android:layout_centerVertical="true"
+            android:id="@+id/fragment_tip_description_text"
+            android:layout_margin="16dp"
+            android:text="Antes de enviar o seu currículo, que tal checar a última vez que você o atualizou? Uma informação a mais pode ser o ponta-pé que falta rumo à sua próxima entrevista de emprego."
+            android:textSize="@dimen/tip_text_size"
+            android:layout_alignParentTop="true"
             />
 
-        <ImageButton
-            android:id="@+id/fragment_tip_thumbs_down_image"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/thumb_down"
-            android:background="@color/cardview_light_background"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_centerVertical="true"
-            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fragment_tip_description_text"
+            >
 
-        <ImageButton
-            android:id="@+id/fragment_tip_thumbs_up_image"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/thumb_up"
-            android:background="@color/cardview_light_background"
-            android:layout_toStartOf="@id/fragment_tip_thumbs_down_image"
-            android:layout_alignParentBottom="true"
-            android:layout_centerVertical="true"
-            />
+            <Button
+                android:id="@+id/fragment_tip_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHECAR CURRÍCULO"
+                android:textColor="@color/colorPrimary"
+                android:padding="8dp"
+                android:background="@drawable/button_outline_background"
+                android:layout_alignParentBottom="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="16dp"
+                />
+
+            <TextView
+                android:id="@+id/fragment_tip_useful_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="32dp"
+                android:layout_toEndOf="@id/fragment_tip_button"
+                android:text="Achou útil?"
+                android:textSize="@dimen/useful_tip_text_size"
+                android:layout_centerVertical="true"
+                />
+
+            <ImageButton
+                android:id="@+id/fragment_tip_thumbs_down_image"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/thumb_down"
+                android:background="@color/cardview_light_background"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_centerVertical="true"
+                />
+
+            <ImageButton
+                android:id="@+id/fragment_tip_thumbs_up_image"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/thumb_up"
+                android:background="@color/cardview_light_background"
+                android:layout_toStartOf="@id/fragment_tip_thumbs_down_image"
+                android:layout_alignParentBottom="true"
+                android:layout_centerVertical="true"
+                />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
