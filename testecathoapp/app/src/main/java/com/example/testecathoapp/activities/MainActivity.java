@@ -28,9 +28,11 @@ import com.example.testecathoapp.R;
 import com.example.testecathoapp.adapters.JobsViewPagerAdapter;
 import com.example.testecathoapp.api.ApiServices;
 import com.example.testecathoapp.containers.PagerContainer;
+import com.example.testecathoapp.models.JobSuggestion;
 import com.example.testecathoapp.models.User;
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
     PagerContainer mContainer;
 
     private User mUser;
+    private JobSuggestion[] mJobSuggestionList;
 
     private ImageView[] mDots;
     private int mDotsCount;
@@ -79,38 +82,7 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
         mContainer = findViewById(R.id.activity_main_pager_container);
         mViewPager = mContainer.getViewPager();
 
-        // Inicializa o Adapter do View Pager
-        JobsViewPagerAdapter jobsViewPagerAdapter = new JobsViewPagerAdapter(this);
-        mViewPager.setAdapter(jobsViewPagerAdapter);
 
-        // Configura o ViewPager
-        mViewPager.setPageMargin(convertDpToPixels(this,16));
-        mViewPager.setClipChildren(false);
-
-        // Configura os dots
-        mDotsCount = jobsViewPagerAdapter.getCount();
-        setupDots(0);
-
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                setupDots(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
-        // Muda a vaga automaticamente a cada 5 segundos
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new CustomTimerTask(), 10000, 5000);
 
         // Inicializa o Handler para as threads
         mHandler = new Handler(Looper.getMainLooper());
@@ -164,7 +136,15 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
         try {
             String stringResponse = response.body().string();
             Log.i(TAG, stringResponse);
-        } catch (IOException e) {
+            JSONArray jsonArray = new JSONArray(stringResponse);
+            setupJobSuggestionList(jsonArray.length(), jsonArray);
+
+            Object jsonObject = jsonArray.get(0);
+            Object object = jsonArray.get(0);
+            Log.i(TAG, "0: " + jsonObject.toString());
+            Log.i(TAG, "1: " + object.toString());
+            Log.i(TAG, "length: " + jsonArray.length());
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -175,7 +155,6 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
                 mWrapper.setVisibility(View.VISIBLE);
             }
         });
-
     }
 
     /**
@@ -202,6 +181,79 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
         if (mDots.length > 0)
             mDots[currentPage].setImageDrawable(getDrawable(R.drawable.active_dot));
         mDots[currentPage].setAlpha(1f);
+    }
+
+    private void setupJobSuggestionList(int length, JSONArray jsonArray) throws JSONException {
+        mJobSuggestionList = new JobSuggestion[length];
+        for(int i = 0; i < length; i++) {
+            // Setando os campos para criar o objeto
+            String title = jsonArray.getJSONObject(i).getString("jobAdTile");
+            String company = jsonArray.getJSONObject(i).getString("company");
+            String date = jsonArray.getJSONObject(i).getString("date");
+            int totalPositions = jsonArray.getJSONObject(i).getInt("totalPositions");
+
+            // Array para as localizações
+            JSONArray locationJsonArray = jsonArray.getJSONObject(i).getJSONArray("locations");
+            String[] locationsArray = new String[locationJsonArray.length()];
+            // Iteração para preencher o array
+            for(int j = 0; j < locationJsonArray.length(); j++) {
+                locationsArray[j] = locationJsonArray.get(j).toString();
+            }
+
+            // Salário recebe o valor real se não for vazio, caso contrário recebe o range
+            String realSalary = jsonArray.getJSONObject(i).getJSONObject("salary").getString("real");
+            String salaryRange = jsonArray.getJSONObject(i).getJSONObject("salary").getString("range");
+            String salary = realSalary.isEmpty() ? salaryRange : realSalary;
+            Log.i(TAG, "Salário é: " + salary);
+
+            mJobSuggestionList[i] = new JobSuggestion(title, company, date, totalPositions, locationsArray, salary);
+        }
+
+        setViewPagerAdapter(mJobSuggestionList);
+    }
+
+    private void setViewPagerAdapter (JobSuggestion[] jobSuggestions) {
+        // Inicializa o Adapter do View Pager
+        JobsViewPagerAdapter jobsViewPagerAdapter = new JobsViewPagerAdapter(getSupportFragmentManager(), jobSuggestions);
+        mViewPager.setAdapter(jobsViewPagerAdapter);
+
+        // Configura o ViewPager
+        mViewPager.setPageMargin(convertDpToPixels(this,16));
+        mViewPager.setClipChildren(false);
+
+        // Configura os dots
+        mDotsCount = jobsViewPagerAdapter.getCount();
+        setupDots(0);
+
+        // Listener do ViewPager para a mudança de fragments
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                setupDots(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        // Muda a vaga automaticamente a cada 5 segundos
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new CustomTimerTask(), 10000, 5000);
+    }
+
+    public JobSuggestion getJobSuggestion(int index) {
+        if (index <= (mJobSuggestionList.length - 1)) {
+            return mJobSuggestionList[index];
+        } else {
+            return null;
+        }
     }
 
     /**

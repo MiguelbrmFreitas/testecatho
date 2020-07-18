@@ -10,8 +10,8 @@ Algumas das funcionalidades apresentadas são extras em relação ao que foi ped
 - [X] Visualizar a foto cadastrada. 
 - [X] Animação de loading. 
 - [X] Timer para o slider mudar automaticamente em um intervalo de tempo.
-- [ ] Arrastar para os lados entre as sugestões de vagas.
-- [ ] Aplicar-se a uma vaga.
+- [X] Arrastar para os lados entre as sugestões de vagas.
+- [X] Aplicar-se a uma vaga.
 - [ ] Visualizar informações detalhadas de uma vaga.
 - [ ] Visualizar dica de recrutadores.
 - [ ] Votar se uma dica é útil ou não.

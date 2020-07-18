@@ -43,7 +43,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/fragment_job_suggestion_today_text"
+            android:id="@+id/fragment_job_suggestion_date_text"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_margin="16dp"
@@ -53,19 +53,31 @@
             android:textStyle="bold"
             />
 
-        <TextView
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/fragment_job_suggestion_main_text"
+            android:id="@+id/fragment_job_suggestion_title_wrapper"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:text="Desenvolvedor Android"
-            android:textSize="@dimen/job_text_size"
-            android:textColor="@color/job_suggestion_text_color"
-            android:textStyle="bold"
-            />
+            android:layout_toStartOf="@id/fragment_job_suggestion_date_text"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/fragment_job_suggestion_main_text"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:text="Desenvolvedor Android"
+                android:textSize="@dimen/job_text_size"
+                android:textColor="@color/job_suggestion_text_color"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                />
+
+        </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -74,7 +86,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="16dp"
             android:text="Catho"
-            android:layout_below="@id/fragment_job_suggestion_main_text"
+            android:layout_below="@id/fragment_job_suggestion_title_wrapper"
             android:textSize="@dimen/job_text_size"
             />
 

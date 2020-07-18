@@ -4,4 +4,5 @@
     <string name="suggestions_title"><b>Sugestões de vagas para você</b></string>
     <string name="tips_title"><b>#DicaDosRecrutadores</b></string>
     <string name="send_cv">ENVIAR CURRÍCULO</string>
+    <string name="cv_sent">CV Enviado</string>
 </resources>
