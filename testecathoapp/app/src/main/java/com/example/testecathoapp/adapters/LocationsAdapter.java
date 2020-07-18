@@ -1,5 +1,7 @@
 package com.example.testecathoapp.adapters;
 
+import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,19 +13,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.LocationsViewHolder> {
     String[] mLocations;
+    Context mContext;
 
-    public LocationsAdapter(String[] locations) {
+    public LocationsAdapter(String[] locations, Context context) {
+        mContext = context;
         mLocations = locations;
+        Log.i("Location", mLocations[0]);
     }
 
     @Override
     public LocationsViewHolder onCreateViewHolder(ViewGroup parent,
                                                   int viewType) {
-        TextView v = (TextView) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.layout_location, parent, false);
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.layout_location, parent, false);
 
-        LocationsViewHolder vh = new LocationsViewHolder(v);
-        return vh;
+        return new LocationsViewHolder(view);
     }
 
 
@@ -31,8 +35,13 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.Loca
     public void onBindViewHolder(LocationsViewHolder holder, int position) {
         final LocationsViewHolder lvh = holder;
 
+        lvh.itemView.setVisibility(View.VISIBLE);
+        lvh.itemView.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
         // Seta o texto para cada localização
         lvh.mLocationTextView.setText(mLocations[position]);
+
+        Log.i("Location", mLocations[position]);
     }
 
     /**

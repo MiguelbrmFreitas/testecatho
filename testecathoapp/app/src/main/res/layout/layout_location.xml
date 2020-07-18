@@ -9,7 +9,9 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/info_text_size"
         android:text="Localidade"
-        android:padding="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp"
         />
 
 </LinearLayout>

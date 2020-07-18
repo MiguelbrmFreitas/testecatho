@@ -1,5 +1,6 @@
 package com.example.testecathoapp.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.testecathoapp.R;
+import com.example.testecathoapp.activities.JobSuggestionDetailsActivity;
 import com.example.testecathoapp.models.JobSuggestion;
 
 import androidx.annotation.NonNull;
@@ -73,10 +75,31 @@ public class JobSuggestionFragment extends Fragment
         mPositionsTextView.setText(getPositionsAndLocationsString(mTotalPositions, mLocations));
         mSalaryTextView.setText(mSalary);
 
+        // Muda o texto do botão após o clique
         mSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mSendButton.setText(getResources().getString(R.string.cv_sent));
+            }
+        });
+
+        // Muda para a Activity com visualização em maior detalhes da vaga
+        mViewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), JobSuggestionDetailsActivity.class);
+
+                // Configura os dados a serem passados para a Activity
+                Bundle bundle = new Bundle();
+                bundle.putString("title", mTitle);
+                bundle.putString("company", mCompany);
+                bundle.putString("date", mDate);
+                bundle.putInt("positions", mTotalPositions);
+                bundle.putStringArray("locations", mLocations);
+                bundle.putString("salary", mSalary);
+
+                intent.putExtra(JobSuggestionDetailsActivity.KEY_EXTRA, bundle);
+                startActivity(intent);
             }
         });
 
