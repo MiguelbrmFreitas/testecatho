@@ -1,6 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/activity_job_suggestion_title_wrapper"
+            >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/activity_job_suggestion_main_text"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:text="Desenvolvedor Android"
+                android:textSize="@dimen/job_text_size"
+                android:textColor="@color/job_suggestion_text_color"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/activity_job_suggestion_date_title_text"
+                    android:layout_margin="16dp"
+                    android:text="@string/date_title"
+                    android:textSize="@dimen/info_text_size"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/activity_job_suggestion_date_text"
+                    android:layout_marginTop="16dp"
+                    android:text="hoje"
+                    android:textColor="@color/date_text_color"
+                    android:textSize="@dimen/info_text_size"
+                    android:textStyle="bold"
+                    />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/activity_job_suggestion_company_title_text"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/company_title"
+                    android:textSize="@dimen/info_text_size"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/activity_job_suggestion_company_text"
+                    android:layout_marginStart="16dp"
+                    android:text="Catho"
+                    android:textSize="@dimen/info_text_size"
+                    />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/activity_job_suggestion_positions_title_text"
+                    android:layout_margin="16dp"
+                    android:text="@string/positions_title"
+                    android:textSize="@dimen/info_text_size"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/activity_job_suggestion_jobs_positions_text"
+                    android:layout_margin="16dp"
+                    android:text="3"
+                    android:textSize="@dimen/info_text_size"
+                    />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/activity_job_suggestion_salary_title_text"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/salary_title"
+                    android:textSize="@dimen/info_text_size"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/activity_job_suggestion_salary_text"
+                    android:text="R$ 5000,00"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/job_positions_text_size"
+                    android:layout_marginStart="16dp"
+                    />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/activity_job_suggestion_locations_title_text"
+                    android:layout_margin="16dp"
+                    android:text="@string/locations_title"
+                    android:textSize="@dimen/info_text_size"
+                    android:textStyle="bold"
+                    />
+
+                <view class="androidx.appcompat.app.AlertController$RecycleListView"
+                    android:id="@+id/activity_job_suggestion_locations_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </view>
+        </LinearLayout>
+
+</LinearLayout>

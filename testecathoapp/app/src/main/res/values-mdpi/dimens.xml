@@ -10,4 +10,5 @@
     <dimen name="tip_text_size">8sp</dimen>
     <dimen name="useful_tip_text_size">6sp</dimen>
     <dimen name="button_job_size">20dp</dimen>
+    <dimen name="info_text_size">10sp</dimen>
 </resources>
