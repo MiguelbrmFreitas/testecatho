@@ -16,9 +16,12 @@ import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 /*
  *  Classe para as chamadas de API
@@ -153,6 +156,9 @@ public class ApiServices
         }
     }
 
+    /**
+     * Recebe as dicas da API
+     */
     public void getTips() {
         String url = mBaseUrl + "/tips";
 
@@ -176,6 +182,55 @@ public class ApiServices
                     mRequestCompleted.onTipsRequestCompleted(call, response);
                 }
             });
+        } else {
+            Log.i(TAG, "Chave de autenticação nula");
+        }
+    }
+
+    /**
+     * Envia o resultado da avaliação da dica
+     * @param userToken     Token de autenticação do usuário
+     * @param action        Action like/dislike para avaliar a dica
+     */
+    public void postSurvey(String userToken, String action, String tipId) {
+        String url = mBaseUrl + "/survey/tips/" + tipId + "/" + action;
+
+        if (mKeys.getSurvey() != null) {
+            MediaType mediaType = MediaType.parse("application/json");
+            JSONObject data = new JSONObject();
+
+            RequestBody requestBody = RequestBody.create(mediaType, data.toString());
+
+            OkHttpClient client = new OkHttpClient();
+
+            // Cria o POST request
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(requestBody)
+                    .header("Accept", "application/json")
+                    .header("Content-Type", "application/json")
+                    .header("x-api-key", mKeys.getSurvey())
+                    .addHeader("Authorization", userToken)
+                    .build();
+
+            Response response = null;
+
+            // Executa o POST request e recebe a resposta da API
+            try {
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                        mRequestCompleted.onSurveyRequestCompleted(call, response);
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
             Log.i(TAG, "Chave de autenticação nula");
         }
@@ -207,5 +262,6 @@ public class ApiServices
         void onUserRequestCompleted(Call call, Response response);
         void onSuggestionsRequestCompleted(Call call, Response response);
         void onTipsRequestCompleted(Call call, Response response);
+        void onSurveyRequestCompleted(Call call, Response response);
     }
 }

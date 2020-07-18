@@ -82,6 +82,7 @@ public class JobSuggestionDetailsActivity extends AppCompatActivity
             setSupportActionBar(mToolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setTitle("Detalhes da vaga");
             mToolbar.setNavigationIcon(R.drawable.baseline_arrow_back_white_24);
             mToolbar.setTitleTextColor(getApplicationContext().getColor(R.color.textColor));
 

@@ -22,7 +22,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.Response;
 
 import com.example.testecathoapp.R;
@@ -38,6 +37,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
     private User mUser;
     private JobSuggestion[] mJobSuggestionList;
     private Tip[] mTips;
-    private int mCurrentTip = 0;
+    private int mTipsIndex = 0;
 
     private ImageView[] mDots;
     private int mDotsCount;
@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
     public void onUserRequestCompleted(Call call, Response response) {
         try {
             String responseBody = response.body().string();
-            Log.i(TAG, responseBody);
             if (response.isSuccessful()) {
                 JSONObject jsonObject = new JSONObject(responseBody);
                 Log.i(TAG, "Json Object is " + jsonObject.toString());
@@ -155,7 +154,6 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
         try {
             // Resposta da API em formato String
             String stringResponse = response.body().string();
-            Log.i(TAG, stringResponse);
             // JSON Array com a resposta da API
             JSONArray jsonArray = new JSONArray(stringResponse);
             // Parse do JSON Array para criar a lista de dicas
@@ -165,8 +163,8 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
         }
 
         // Prepara o carregamento do fragment
-        Log.i(TAG, mTips[mCurrentTip].getDescription());
-        final TipsFragment tipsFragment = TipsFragment.newInstance(mTips[mCurrentTip], mTips.length);
+        Log.i(TAG, mTips[mTipsIndex].getDescription());
+        final TipsFragment tipsFragment = TipsFragment.newInstance(mTips[mTipsIndex], mTips.length);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(tipsFragment, "tipsFragment").commit();
 
@@ -182,6 +180,20 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
                 mWrapper.setVisibility(View.VISIBLE);
             }
         });
+    }
+
+    @Override
+    public void onSurveyRequestCompleted(Call call, Response response) {
+        // Resposta da API em formato String
+        String stringResponse = null;
+        try {
+            stringResponse = response.body().string();
+            // Vai para a próxima dica
+            goToNextTip();
+            Log.i(TAG, stringResponse);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -267,7 +279,7 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
      * Configura o ViewPager com o slider das sugestões de vagas
      * @param jobSuggestions        Array de sugestões de vagas
      */
-    private void setViewPagerAdapter (JobSuggestion[] jobSuggestions) {
+    private void setViewPagerAdapter(JobSuggestion[] jobSuggestions) {
         // Inicializa o Adapter do View Pager
         JobsViewPagerAdapter jobsViewPagerAdapter = new JobsViewPagerAdapter(getSupportFragmentManager(), jobSuggestions);
         mViewPager.setAdapter(jobsViewPagerAdapter);
@@ -305,6 +317,27 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
     }
 
     /**
+     * Método para ir para a próxima dica
+     */
+    public void goToNextTip() {
+        if (mTipsIndex < mTips.length) {
+            mTipsIndex++; // Incrementa o índice da dica
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+
+                }
+            });
+        } else {
+            mTipsIndex = 0;
+        }
+    }
+
+    public void postSurvey(String action, String tipId) {
+        mApiServices.postSurvey(mUser.getToken(), action, tipId);
+    }
+
+    /**
      * Método para converter pixels relativos para absolutos
      * @param context   Referência ao contexto do app
      * @param dip       Pixels em DPI a serem convertidos
@@ -324,6 +357,7 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
             MainActivity.this.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    // Muda a página do slider com sugestões de vagas
                     int currentItem = mViewPager.getCurrentItem();
                     if (currentItem < 4) {
                         mViewPager.setCurrentItem(++currentItem);

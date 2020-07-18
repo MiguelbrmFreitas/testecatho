@@ -7,8 +7,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.testecathoapp.R;
+import com.example.testecathoapp.activities.MainActivity;
 import com.example.testecathoapp.models.Tip;
 
 import androidx.annotation.NonNull;
@@ -30,6 +32,7 @@ public class TipsFragment extends Fragment
     private String mDescription;
     private String mLabel;
     private String mUrl;
+    private String mId;
     private boolean mShowButton;
 
     @Override
@@ -41,6 +44,7 @@ public class TipsFragment extends Fragment
         mLabel = getArguments().getString("label");
         mUrl = getArguments().getString("url");
         mShowButton = getArguments().getBoolean("show");
+        mId = getArguments().getString("id");
     }
 
     @Nullable
@@ -64,6 +68,26 @@ public class TipsFragment extends Fragment
             mButton.setVisibility(View.INVISIBLE);
         }
 
+        // Listener de botão de like
+        mThumbsUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showToast("Avaliação registrada (like)!");
+                // Chama o método da Activity
+                ((MainActivity) getActivity()).postSurvey("like", mId);
+            }
+        });
+
+        // Listener de botão de dislike
+        mThumbsDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showToast("Avaliação registrada (dislike)!");
+                // Chama o método da Activity
+                ((MainActivity) getActivity()).postSurvey("dislike", mId);
+            }
+        });
+
         return view;
     }
 
@@ -80,10 +104,20 @@ public class TipsFragment extends Fragment
         args.putString("label", tip.getButtonLabel());
         args.putString("url", tip.getUrl());
         args.putBoolean("show", tip.isToShowButton());
+        args.putString("id", tip.getId());
+        args.putInt("index", index);
 
         TipsFragment fragment = new TipsFragment();
         fragment.setArguments(args);
 
         return fragment;
+    }
+
+    /**
+     * Mostra Toast na tela
+     * @param message   Mensagem do Toast
+     */
+    private void showToast(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
     }
 }
