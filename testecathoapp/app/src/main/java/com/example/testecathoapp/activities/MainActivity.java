@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.Call;
@@ -28,15 +29,15 @@ import com.example.testecathoapp.R;
 import com.example.testecathoapp.adapters.JobsViewPagerAdapter;
 import com.example.testecathoapp.api.ApiServices;
 import com.example.testecathoapp.containers.PagerContainer;
+import com.example.testecathoapp.fragments.TipsFragment;
 import com.example.testecathoapp.models.JobSuggestion;
+import com.example.testecathoapp.models.Tip;
 import com.example.testecathoapp.models.User;
 
-import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
 
     private User mUser;
     private JobSuggestion[] mJobSuggestionList;
+    private Tip[] mTips;
 
     private ImageView[] mDots;
     private int mDotsCount;
@@ -81,8 +83,6 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
         // Inicializa o PageContainer e o ViewPager
         mContainer = findViewById(R.id.activity_main_pager_container);
         mViewPager = mContainer.getViewPager();
-
-
 
         // Inicializa o Handler para as threads
         mHandler = new Handler(Looper.getMainLooper());
@@ -157,14 +157,24 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
             Log.i(TAG, stringResponse);
             // JSON Array com a resposta da API
             JSONArray jsonArray = new JSONArray(stringResponse);
+            // Parse do JSON Array para criar as models com as dicas
+            setupTipsList(jsonArray.length(), jsonArray);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        // Tira o spinner do loading e mostra o conteúdo carregado na tela
+        final TipsFragment tipsFragment = TipsFragment.newInstance();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(tipsFragment, "tipsFragment").commit();
+
         mHandler.post(new Runnable() {
             @Override
             public void run() {
+                // Cria o fragment com dicas
+                FrameLayout layout = findViewById(R.id.activity_main_tip_fl);
+                layout.addView(tipsFragment.getView());
+
+                // Tira o spinner do loading e mostra o conteúdo carregado na tela
                 mSpinner.setVisibility(View.GONE);
                 mWrapper.setVisibility(View.VISIBLE);
             }
@@ -173,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
 
     /**
      * Método para adicionar o dot marcado abaixo do slider de vagas
-     * @param currentPage   Página atual
+     * @param currentPage       Página atual
      */
     private void setupDots(int currentPage) {
         // Para não duplicar
@@ -204,6 +214,7 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
      * @throws JSONException    Exceção lançada se houver problema no parser do JSON
      */
     private void setupJobSuggestionList(int length, JSONArray jsonArray) throws JSONException {
+        // Inicializa o array de sugestões de vagas
         mJobSuggestionList = new JobSuggestion[length];
         for(int i = 0; i < length; i++) {
             // Setando os campos para criar o objeto
@@ -229,9 +240,19 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
             mJobSuggestionList[i] = new JobSuggestion(title, company, date, totalPositions, locationsArray, salary);
         }
 
+        // Configura o adapter do view pager
         setViewPagerAdapter(mJobSuggestionList);
     }
 
+    private void setupTipsList(int length, JSONArray jsonArray) {
+        // Inicializa o array de dicas
+        mTips = new Tip[length];
+    }
+
+    /**
+     * Configura o ViewPager com o slider das sugestões de vagas
+     * @param jobSuggestions        Array de sugestões de vagas
+     */
     private void setViewPagerAdapter (JobSuggestion[] jobSuggestions) {
         // Inicializa o Adapter do View Pager
         JobsViewPagerAdapter jobsViewPagerAdapter = new JobsViewPagerAdapter(getSupportFragmentManager(), jobSuggestions);
@@ -241,7 +262,7 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
         mViewPager.setPageMargin(convertDpToPixels(this,16));
         mViewPager.setClipChildren(false);
 
-        // Configura os dots
+        // Configura os dots que marcam a página do view pager
         mDotsCount = jobsViewPagerAdapter.getCount();
         setupDots(0);
 
@@ -254,6 +275,7 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
 
             @Override
             public void onPageSelected(int position) {
+                // Quando arrasta para o lado, atualiza os dots abaixo do view pager que marcam a página
                 setupDots(position);
             }
 
@@ -266,14 +288,6 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
         // Muda a vaga automaticamente a cada 5 segundos
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new CustomTimerTask(), 10000, 5000);
-    }
-
-    public JobSuggestion getJobSuggestion(int index) {
-        if (index <= (mJobSuggestionList.length - 1)) {
-            return mJobSuggestionList[index];
-        } else {
-            return null;
-        }
     }
 
     /**
@@ -304,7 +318,6 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
                     }
                 }
             });
-
         }
     }
 }

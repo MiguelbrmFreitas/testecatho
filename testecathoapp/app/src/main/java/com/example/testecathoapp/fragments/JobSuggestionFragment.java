@@ -146,8 +146,6 @@ public class JobSuggestionFragment extends Fragment
             positionsString = "1 vaga";
         }
 
-        Log.i(TAG, "Length is " + locations.length);
-
         if (locations.length > 2) {
             locationsString = locations[0] + " + " + (locations.length - 1) + " cidades";
         } else if (locations.length == 2) {
