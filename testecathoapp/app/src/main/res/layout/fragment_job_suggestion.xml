@@ -9,6 +9,8 @@
     android:layout_margin="16dp"
     >
 
+    <!-- Textos hardcoded apenas para mockup e teste -->
+    <!-- Textos vão ser substituídos pela API após o loading -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,12 +20,13 @@
         <Button
             android:id="@+id/fragment_job_suggestion_send_cv_button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/button_job_size"
             android:text="@string/send_cv"
             android:background="@color/button_color"
             android:layout_alignParentBottom="true"
             android:layout_margin="16dp"
             android:textColor="@color/textColor"
+            android:elevation="8dp"
             />
 
         <ImageButton
@@ -46,6 +49,7 @@
             android:layout_margin="16dp"
             android:text="hoje"
             android:textColor="@color/date_text_color"
+            android:textSize="@dimen/job_date_text_size"
             android:textStyle="bold"
             />
 

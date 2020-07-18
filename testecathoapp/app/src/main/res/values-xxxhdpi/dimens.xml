@@ -6,4 +6,8 @@
     <dimen name="tips_height">235dp</dimen>
     <dimen name="job_text_size">20sp</dimen>
     <dimen name="job_positions_text_size">18sp</dimen>
+    <dimen name="job_date_text_size">18sp</dimen>
+    <dimen name="tip_text_size">18sp</dimen>
+    <dimen name="useful_tip_text_size">16sp</dimen>
+    <dimen name="button_job_size">60dp</dimen>
 </resources>

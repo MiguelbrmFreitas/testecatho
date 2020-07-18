@@ -19,6 +19,8 @@
 
     </ProgressBar>
 
+    <!-- Textos hardcoded apenas para mockup e teste -->
+    <!-- Textos vão ser substituídos pela API após o loading -->
    <LinearLayout
        android:id="@+id/activity_main_linear_layout_wrapper"
        android:layout_width="match_parent"
