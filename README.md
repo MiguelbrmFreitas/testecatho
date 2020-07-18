@@ -13,7 +13,7 @@ Algumas das funcionalidades apresentadas são extras em relação ao que foi ped
 - [X] Arrastar para os lados entre as sugestões de vagas.
 - [X] Aplicar-se a uma vaga.
 - [X] Visualizar informações detalhadas de uma vaga.
-- [ ] Visualizar dica de recrutadores.
+- [X] Visualizar dica de recrutadores.
 - [ ] Votar se uma dica é útil ou não.
 
 ## Diagrama de Casos de Uso

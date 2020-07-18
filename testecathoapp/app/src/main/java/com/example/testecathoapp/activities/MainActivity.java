@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
     private User mUser;
     private JobSuggestion[] mJobSuggestionList;
     private Tip[] mTips;
+    private int mCurrentTip = 0;
 
     private ImageView[] mDots;
     private int mDotsCount;
@@ -157,13 +158,15 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
             Log.i(TAG, stringResponse);
             // JSON Array com a resposta da API
             JSONArray jsonArray = new JSONArray(stringResponse);
-            // Parse do JSON Array para criar as models com as dicas
+            // Parse do JSON Array para criar a lista de dicas
             setupTipsList(jsonArray.length(), jsonArray);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        final TipsFragment tipsFragment = TipsFragment.newInstance();
+        // Prepara o carregamento do fragment
+        Log.i(TAG, mTips[mCurrentTip].getDescription());
+        final TipsFragment tipsFragment = TipsFragment.newInstance(mTips[mCurrentTip], mTips.length);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(tipsFragment, "tipsFragment").commit();
 
@@ -216,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
     private void setupJobSuggestionList(int length, JSONArray jsonArray) throws JSONException {
         // Inicializa o array de sugestões de vagas
         mJobSuggestionList = new JobSuggestion[length];
-        for(int i = 0; i < length; i++) {
+        for (int i = 0; i < length; i++) {
             // Setando os campos para criar o objeto
             String title = jsonArray.getJSONObject(i).getString("jobAdTile");
             String company = jsonArray.getJSONObject(i).getString("company");
@@ -244,9 +247,20 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
         setViewPagerAdapter(mJobSuggestionList);
     }
 
-    private void setupTipsList(int length, JSONArray jsonArray) {
+    private void setupTipsList(int length, JSONArray jsonArray) throws JSONException {
         // Inicializa o array de dicas
         mTips = new Tip[length];
+
+        for (int i = 0; i < length; i++) {
+            // Setando os campos para criar o objeto
+            String description = jsonArray.getJSONObject(i).getString("description");
+            String label = jsonArray.getJSONObject(i).getJSONObject("button").getString("label");
+            String url = jsonArray.getJSONObject(i).getJSONObject("button").getString("url");
+            boolean show = jsonArray.getJSONObject(i).getJSONObject("button").getBoolean("show");
+            String id = jsonArray.getJSONObject(i).getString("id");
+
+            mTips[i] = new Tip(id, description, show, label, url);
+        }
     }
 
     /**

@@ -109,7 +109,7 @@ public class JobSuggestionFragment extends Fragment
     /**
      * Cria uma nova instância do Fragment
      * @param jobSuggestion     Informações para carregar no Fragment
-     * @param index             Informação do índice da instância
+     * @param index             Índice da instância
      * @return
      */
     public static JobSuggestionFragment newInstance(JobSuggestion jobSuggestion, int index) {

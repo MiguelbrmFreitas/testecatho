@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/fragment_tip_text"
+        android:id="@+id/fragment_tip_description_text"
         android:layout_margin="16dp"
         android:text="Antes de enviar o seu currículo, que tal checar a última vez que você o atualizou? Uma informação a mais pode ser o ponta-pé que falta rumo à sua próxima entrevista de emprego."
         android:textSize="@dimen/tip_text_size"
@@ -23,7 +23,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/fragment_tip_text"
+        android:layout_below="@id/fragment_tip_description_text"
         >
 
         <Button

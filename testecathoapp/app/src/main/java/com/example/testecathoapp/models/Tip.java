@@ -35,7 +35,7 @@ public class Tip
         this.mDescription = mDescription;
     }
 
-    public boolean isShowButton() {
+    public boolean isToShowButton() {
         return mShowButton;
     }
 
