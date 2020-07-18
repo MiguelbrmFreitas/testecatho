@@ -120,6 +120,10 @@ public class ApiServices
         }
     }
 
+    /**
+     * Método para fazer a chamada para /suggestions na API, retornando as sugestões de vagas disponíveis
+     * @param userToken     Token de autenticação do usuário
+     */
     public void getJobSuggestions(String userToken) {
         String url = mBaseUrl + "/suggestion";
 
@@ -142,6 +146,34 @@ public class ApiServices
                 @Override
                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                     mRequestCompleted.onSuggestionsRequestCompleted(call, response);
+                }
+            });
+        } else {
+            Log.i(TAG, "Chave de autenticação nula");
+        }
+    }
+
+    public void getTips() {
+        String url = mBaseUrl + "/tips";
+
+        OkHttpClient client = new OkHttpClient();
+
+        if (mKeys.getTips() != null) {
+            Request request = new Request.Builder()
+                    .url(url)
+                    .addHeader("x-api-key", mKeys.getTips())
+                    .build();
+
+            // Chama o callback com a resposta
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                    e.printStackTrace();
+                }
+
+                @Override
+                public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                    mRequestCompleted.onTipsRequestCompleted(call, response);
                 }
             });
         } else {
@@ -174,5 +206,6 @@ public class ApiServices
         void onKeysRequestCompleted();
         void onUserRequestCompleted(Call call, Response response);
         void onSuggestionsRequestCompleted(Call call, Response response);
+        void onTipsRequestCompleted(Call call, Response response);
     }
 }

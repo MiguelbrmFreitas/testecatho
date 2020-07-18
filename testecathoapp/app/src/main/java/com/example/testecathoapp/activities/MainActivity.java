@@ -132,22 +132,36 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
 
     @Override
     public void onSuggestionsRequestCompleted(Call call, Response response) {
-        // Chamada do método de getSuggestions que depende das informações do request getUser
+        // Chamada do método de getSuggestions da API, que depende das informações do request getUser
         try {
+            // Resposta da API em formato String
             String stringResponse = response.body().string();
-            Log.i(TAG, stringResponse);
+            // JSON Array com a resposta da API
             JSONArray jsonArray = new JSONArray(stringResponse);
+            // Parse do JSON Array para criar as models de sugestões de vaga
             setupJobSuggestionList(jsonArray.length(), jsonArray);
-
-            Object jsonObject = jsonArray.get(0);
-            Object object = jsonArray.get(0);
-            Log.i(TAG, "0: " + jsonObject.toString());
-            Log.i(TAG, "1: " + object.toString());
-            Log.i(TAG, "length: " + jsonArray.length());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        // Receber as Dicas da API após terem terminado os outros requests
+        mApiServices.getTips();
+    }
+
+    @Override
+    public void onTipsRequestCompleted(Call call, Response response) {
+        // Chamada do método de getTips da API
+        try {
+            // Resposta da API em formato String
+            String stringResponse = response.body().string();
+            Log.i(TAG, stringResponse);
+            // JSON Array com a resposta da API
+            JSONArray jsonArray = new JSONArray(stringResponse);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Tira o spinner do loading e mostra o conteúdo carregado na tela
         mHandler.post(new Runnable() {
             @Override
             public void run() {
@@ -183,6 +197,12 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
         mDots[currentPage].setAlpha(1f);
     }
 
+    /**
+     * Método para configurar a lista de sugestões de vaga a ser mostrada no slider a partir do JSON Array da API
+     * @param length            Tamanho da lista
+     * @param jsonArray         JSON Array com a resposta da API
+     * @throws JSONException    Exceção lançada se houver problema no parser do JSON
+     */
     private void setupJobSuggestionList(int length, JSONArray jsonArray) throws JSONException {
         mJobSuggestionList = new JobSuggestion[length];
         for(int i = 0; i < length; i++) {
