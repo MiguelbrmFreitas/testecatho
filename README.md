@@ -2,10 +2,10 @@
 Implementação em Java do desafio técnico do processo seletivo da Catho. Este repositório e o read-me serão atualizados durante o desenvolvimento.
 
 ## Descrição
-		Tela de home de um usuário com foto de perfil, slider com sugestões de vagas (com timer de mudança de página incluso) e card com dicas dos recrutadores.  
-	Será possível clicar em enviar currículo para cada sugestão e abrir outra tela para ver mais detalhes sobre uma vaga, tal como avaliar dicas como úteis ou não.  
-		Quando uma dica é avaliada, a próxima é mostrada.  
-	Algumas das funcionalidades apresentadas são extras em relação ao que foi pedido.  
+Tela de home de um usuário com foto de perfil, slider com sugestões de vagas (com timer de mudança de página incluso) e card com dicas dos recrutadores.  
+Será possível clicar em enviar currículo para cada sugestão e abrir outra tela para ver mais detalhes sobre uma vaga, tal como avaliar dicas como úteis ou não.  
+Quando uma dica é avaliada, a próxima é mostrada.  
+Algumas das funcionalidades apresentadas são extras em relação ao que foi pedido.  
 
 ## Features a serem implementadas
 - [X] Visualizar a foto cadastrada. 
