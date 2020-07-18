@@ -8,4 +8,7 @@
     <color name="textColor">#FFFFFF</color>
     <color name="activeDotColor">#FFFFFF</color>
     <color name="defaultDotColor">#004990</color>
+    <color name="button_color">#1250C4</color>
+    <color name="job_suggestion_text_color">#0277BD</color>
+    <color name="date_text_color">#FFA000</color>
 </resources>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="text_size">12sp</dimen>
+    <dimen name="title_text_size">12sp</dimen>
     <dimen name="jobs_width">260dp</dimen>
     <dimen name="cards_height">90dp</dimen>
     <dimen name="tips_height">95dp</dimen>
+    <dimen name="job_text_size">10sp</dimen>
+    <dimen name="job_positions_text_size">10sp</dimen>
 </resources>

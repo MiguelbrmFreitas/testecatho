@@ -3,4 +3,5 @@
     <string name="greetings_user">Olá, &lt;b>%1$s&lt;/b></string>
     <string name="suggestions_title"><b>Sugestões de vagas para você</b></string>
     <string name="tips_title"><b>#DicaDosRecrutadores</b></string>
+    <string name="send_cv">ENVIAR CURRÍCULO</string>
 </resources>
