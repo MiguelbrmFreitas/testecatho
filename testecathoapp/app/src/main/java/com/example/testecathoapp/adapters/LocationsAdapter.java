@@ -18,7 +18,6 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.Loca
     public LocationsAdapter(String[] locations, Context context) {
         mContext = context;
         mLocations = locations;
-        Log.i("Location", mLocations[0]);
     }
 
     @Override
@@ -40,8 +39,6 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.Loca
 
         // Seta o texto para cada localização
         lvh.mLocationTextView.setText(mLocations[position]);
-
-        Log.i("Location", mLocations[position]);
     }
 
     /**

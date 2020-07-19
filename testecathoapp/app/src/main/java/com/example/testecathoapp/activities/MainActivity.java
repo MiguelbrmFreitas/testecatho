@@ -105,8 +105,8 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
         try {
             String responseBody = response.body().string();
             if (response.isSuccessful()) {
+                // Faz o parse do JSON Object
                 JSONObject jsonObject = new JSONObject(responseBody);
-                Log.i(TAG, "Json Object is " + jsonObject.toString());
                 String id = jsonObject.getString("id");
                 String name = jsonObject.getString("name");
                 String token = jsonObject.getString("token");
@@ -117,9 +117,10 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        mGreetingsTextView.setText(Html.fromHtml(getString(R.string.greetings_user, mUser.getName())));
+                        mGreetingsTextView.setText(Html.fromHtml(getString(R.string.greetings_user, getFirstName(mUser.getName()))));
                         Drawable photo = mApiServices.getPhotoDrawable(mUser.getPhotoRef(), getApplicationContext());
                         mProfilePicture.setImageDrawable(photo);
+                        // Faz a chamada para a API para receber as vagas
                         mApiServices.getJobSuggestions(mUser.getToken());
                     }
                 });
@@ -191,7 +192,6 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
             stringResponse = response.body().string();
             // Vai para a próxima dica
             goToNextTip();
-            Log.i(TAG, stringResponse);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -251,7 +251,6 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
             String realSalary = jsonArray.getJSONObject(i).getJSONObject("salary").getString("real");
             String salaryRange = jsonArray.getJSONObject(i).getJSONObject("salary").getString("range");
             String salary = realSalary.isEmpty() ? salaryRange : realSalary;
-            Log.i(TAG, "Salário é: " + salary);
 
             mJobSuggestionList[i] = new JobSuggestion(title, company, date, totalPositions, locationsArray, salary);
         }
@@ -260,6 +259,12 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
         setViewPagerAdapter(mJobSuggestionList);
     }
 
+    /**
+     * Carrega a lista de dicas a partir do JSON Array de resposta da API
+     * @param length        Tamanho da lista
+     * @param jsonArray     JSON Array a ser decomposto
+     * @throws JSONException
+     */
     private void setupTipsList(int length, JSONArray jsonArray) throws JSONException {
         // Inicializa o array de dicas
         mTips = new Tip[length];
@@ -312,9 +317,9 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
             }
         });
 
-        // Muda a vaga automaticamente a cada 5 segundos
+        // Muda a vaga automaticamente a cada 6 segundos
         Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new CustomTimerTask(), 10000, 5000);
+        timer.scheduleAtFixedRate(new CustomTimerTask(), 10000, 6000);
     }
 
     /**
@@ -346,6 +351,11 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
         });
     }
 
+    /**
+     * Método para fazer o POST para /survey/tips (avaliação de dica)
+     * @param action
+     * @param tipId
+     */
     public void postSurvey(String action, String tipId) {
         mApiServices.postSurvey(mUser.getToken(), action, tipId);
     }
@@ -358,6 +368,26 @@ public class MainActivity extends AppCompatActivity implements ApiServices.Reque
      */
     private static int convertDpToPixels(Context context, int dip) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, context.getResources().getDisplayMetrics());
+    }
+
+    /**
+     * Retorna o primeiro nome
+     * @param name      Nome completo
+     * @return          String com o primeiro nome
+     */
+    private String getFirstName(String name) {
+        String firstName = "";
+
+        for (int i = 0; i < name.length(); i++) {
+            char charactere = name.charAt(i);
+            if (charactere != ' ') {
+                firstName = firstName + charactere;
+            } else {
+                break;
+            }
+        }
+
+        return firstName;
     }
 
     /**

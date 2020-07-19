@@ -109,8 +109,6 @@ public class TipsFragment extends Fragment
             });
         }
 
-        Log.i(TAG, "Cheguei aqui");
-
         return view;
     }
 

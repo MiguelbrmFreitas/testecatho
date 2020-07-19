@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/fragment_tip_description_text"
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/responsive_margin"
             android:text="Antes de enviar o seu currículo, que tal checar a última vez que você o atualizou? Uma informação a mais pode ser o ponta-pé que falta rumo à sua próxima entrevista de emprego."
             android:textSize="@dimen/tip_text_size"
             android:layout_alignParentTop="true"
@@ -49,12 +49,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CHECAR CURRÍCULO"
+                android:textSize="@dimen/button_text_size"
                 android:textColor="@color/colorPrimary"
                 android:padding="8dp"
                 android:background="@drawable/button_outline_background"
                 android:layout_alignParentBottom="true"
                 android:layout_centerVertical="true"
-                android:layout_margin="16dp"
+                android:layout_margin="@dimen/responsive_margin"
                 />
 
             <TextView
@@ -67,25 +68,26 @@
                 android:text="Achou útil?"
                 android:textSize="@dimen/useful_tip_text_size"
                 android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/useful_margin"
                 />
 
             <ImageButton
                 android:id="@+id/fragment_tip_thumbs_down_image"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="@dimen/image_button_size"
+                android:layout_height="@dimen/image_button_size"
                 android:src="@drawable/thumb_down"
                 android:background="@color/cardview_light_background"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@dimen/responsive_margin"
                 android:layout_centerVertical="true"
                 />
 
             <ImageButton
                 android:id="@+id/fragment_tip_thumbs_up_image"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="@dimen/image_button_size"
+                android:layout_height="@dimen/image_button_size"
                 android:src="@drawable/thumb_up"
                 android:background="@color/cardview_light_background"
                 android:layout_toStartOf="@id/fragment_tip_thumbs_down_image"

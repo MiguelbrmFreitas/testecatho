@@ -22,22 +22,14 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_job_size"
             android:text="@string/send_cv"
-            android:background="@color/button_color"
+            android:background="@drawable/rounded_button"
             android:layout_alignParentBottom="true"
-            android:layout_margin="16dp"
-            android:textColor="@color/textColor"
-            android:elevation="8dp"
-            />
-
-        <ImageButton
-            android:id="@+id/fragment_job_view_image_button"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_above="@id/fragment_job_suggestion_send_cv_button"
-            android:src="@drawable/done_all"
-            android:background="@color/cardview_light_background"
-            android:layout_alignParentEnd="true"
             android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="@dimen/responsive_margin"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/button_text_size"
+            android:elevation="8dp"
             />
 
         <TextView
@@ -46,7 +38,10 @@
             android:id="@+id/fragment_job_suggestion_date_text"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_margin="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="@dimen/responsive_margin"
             android:text="hoje"
             android:textColor="@color/date_text_color"
             android:textSize="@dimen/job_date_text_size"
@@ -99,7 +94,7 @@
             android:text="3 vagas - São Paulo (SP) + 3 cidades"
             android:layout_below="@id/fragment_job_suggestion_company_text"
             android:textSize="@dimen/job_positions_text_size"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/margin_fields"
             />
 
         <TextView
@@ -112,7 +107,18 @@
             android:textStyle="bold"
             android:layout_below="@id/fragment_job_suggestion_jobs_positions_text"
             android:textSize="@dimen/job_positions_text_size"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/margin_fields"
+            />
+
+        <ImageButton
+            android:id="@+id/fragment_job_view_image_button"
+            android:layout_width="@dimen/image_button_size"
+            android:layout_height="@dimen/image_button_size"
+            android:layout_below="@id/fragment_job_suggestion_jobs_positions_text"
+            android:src="@drawable/done_all"
+            android:background="@color/cardview_light_background"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/responsive_margin"
             />
 
     </RelativeLayout>

@@ -8,8 +8,8 @@ android {
         applicationId "com.example.testecathoapp"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 14
-        versionName "0.9.1"
+        versionCode 15
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

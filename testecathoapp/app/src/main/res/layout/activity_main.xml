@@ -106,7 +106,7 @@
 
        <RelativeLayout
            android:layout_width="match_parent"
-           android:layout_height="@dimen/cards_height"
+           android:layout_height="@dimen/card_wrapper_height"
            android:id="@+id/activity_main_tips_rl"
            android:layout_weight="4"
            >

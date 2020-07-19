@@ -61,7 +61,6 @@ public class ApiServices
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 String responseBody = response.body().string();
-                Log.i(TAG, responseBody);
                 if (response.isSuccessful()) {
                     try {
                         JSONObject jsonObject = new JSONObject(responseBody);
@@ -71,11 +70,6 @@ public class ApiServices
                         String surveyKey = jsonObject.getString("survey");
 
                         mKeys = new Keys(authKey, tipsKey, suggestionKey, surveyKey);
-
-                        Log.i(TAG, "Auth key is " + mKeys.getAuth());
-                        Log.i(TAG, "Tips key is " + mKeys.getTips());
-                        Log.i(TAG, "Suggestion key is " + mKeys.getSuggestion());
-                        Log.i(TAG, "Survey key is " + mKeys.getSurvey());
 
                         mRequestCompleted.onKeysRequestCompleted();
                     } catch (JSONException e) {
@@ -244,7 +238,7 @@ public class ApiServices
      */
     public Drawable getPhotoDrawable(String photoRef, Context context) {
         Drawable photoDrawable;
-        Log.i(TAG, photoRef);
+
         if (photoRef.equals("/assets/ee09bd39-4ca2-47ac-9c5e-9c57ba5a26dc.png")) {
             photoDrawable = context.getDrawable(R.drawable.user1);
         } else {

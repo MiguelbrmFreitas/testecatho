@@ -2,13 +2,19 @@
 <resources>
     <dimen name="title_text_size">12sp</dimen>
     <dimen name="jobs_width">260dp</dimen>
-    <dimen name="cards_height">130dp</dimen>
+    <dimen name="cards_height">120dp</dimen>
+    <dimen name="card_wrapper_height">130dp</dimen>
     <dimen name="tips_height">140dp</dimen>
     <dimen name="job_text_size">12sp</dimen>
     <dimen name="job_positions_text_size">10sp</dimen>
     <dimen name="job_date_text_size">10sp</dimen>
     <dimen name="tip_text_size">10sp</dimen>
-    <dimen name="useful_tip_text_size">8sp</dimen>
-    <dimen name="button_job_size">25dp</dimen>
+    <dimen name="useful_tip_text_size">10sp</dimen>
+    <dimen name="button_job_size">20dp</dimen>
     <dimen name="info_text_size">12sp</dimen>
+    <dimen name="responsive_margin">10dp</dimen>
+    <dimen name="useful_margin">8sp</dimen>
+    <dimen name="button_text_size">10sp</dimen>
+    <dimen name="image_button_size">24dp</dimen>
+    <dimen name="margin_fields">2dp</dimen>
 </resources>
