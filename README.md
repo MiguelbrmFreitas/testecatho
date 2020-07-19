@@ -1,5 +1,6 @@
 # Teste da Catho
-Implementação em Java do desafio técnico do processo seletivo da Catho.
+Implementação em Java do desafio técnico do processo seletivo da Catho.  
+Demonstração em vídeo: https://bit.ly/3eH5Voa
 
 ## Descrição
 Tela de home de um usuário com foto de perfil, slider com sugestões de vagas (com timer de mudança de página incluso) e card com dicas dos recrutadores.  
