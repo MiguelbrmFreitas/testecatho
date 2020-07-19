@@ -34,5 +34,5 @@ Algumas das funcionalidades apresentadas são extras em relação ao que foi ped
 Para facilitar os testes dispensando configurações adicionais para rodar o celular e a API local na mesma rede, foi feito o deploy da API para o Heroku na seguinte URL: https://teste-catho-api-v2.herokuapp.com
 
 ## Como rodar
-Abrir a pasta **testecathoapps** da raiz no Android Studio como um projeto. Uma vez carregado, ir em **Build -> Make Project** e depois no ícone de **Run**, escolhendo o dispositivo virtual ou físico em que o app será executado.  
+Abrir a pasta **testecathoapp** da raiz no Android Studio como um projeto. Uma vez carregado, ir em **Build -> Make Project** e depois no ícone de **Run**, escolhendo o dispositivo virtual ou físico em que o app será executado.  
 Como foi dito na observação, não é necessário rodar um servidor local para a API.
